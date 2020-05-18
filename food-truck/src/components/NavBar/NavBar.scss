@@ -1,0 +1,36 @@
+nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #f1f1f1;
+    box-shadow: 0px 0px 5px #000;
+
+    .nav-icon-container {
+        display: flex;
+        align-items: center;
+        margin-right: auto;
+        margin-left: 10px;
+
+        ion-icon {
+            font-size: 2rem;
+        }
+    }
+
+    a {
+        transition: .3s;
+        font-size: 2rem;
+        margin: 10px 20px;
+        text-decoration: none;
+        color: #000;
+        font-weight: 300;
+
+        &:hover {
+            transition: .3s;
+            color: #555;
+            margin-top: 7px;
+        }
+    }
+}
