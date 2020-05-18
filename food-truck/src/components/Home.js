@@ -8,7 +8,7 @@ const Home = () => {
             <div className="logo">
                 <ion-icon name="ios-cart" />
                 <h1>Food Truck</h1>
-                <p>Order from anywhere to enjoy meals in the comfort of your own home</p>
+                <p>Order from anywhere, enjoy meals in the comfort of your own home, easy as that.</p>
             </div>
         </div>
     )
