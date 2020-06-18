@@ -1,11 +1,15 @@
 .home-container {
+    background-color: #f6f6f6;
 
     .logo {
         width: 100%;
         margin-top: 30vh;
+        padding-bottom: 80px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: #fff;
+        border-bottom: 1px solid #ececec;
 
         ion-icon {
             font-size: 6rem;
@@ -22,6 +26,75 @@
             width: 50%;
             margin: 20px auto;
             text-align: center;
+        }
+    }
+
+    .register {
+        width: 80%;
+        margin: 0px auto;
+        padding-top: 40px;
+        padding-bottom: 60px;
+
+        h2 {
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        .register-boxes {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-evenly;
+
+            .register-box {
+                box-shadow: 0 0 3px 0px rgb(112, 112, 112);
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                width: 33%;
+                background-color: #fff;
+                margin: 0 2%;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ececec;
+
+                h3 {
+                    margin-top: 5px;
+                    text-align: center;
+                    font-size: 2.2rem;
+                    margin-bottom: 15px;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid #ececec;
+                }
+
+                ul {
+                    width: 70%;
+                    margin: 0 auto;
+                    list-style-type: disc;
+                    border-bottom: 1px solid #ececec;
+
+                    li {
+                        font-size: 1.8rem;
+                        font-weight: 300;
+                        margin-bottom: 10px;
+                    }
+
+
+                }
+
+                a {
+                    transition: .3s;
+                    text-decoration: none;
+                    margin: 0 auto;
+                    margin-top: 10px;
+                    font-size: 1.8rem;
+                    color: rgb(25, 144, 255);
+
+                    &:hover {
+                        transition: .3s;
+                        color:rgb(19, 118, 211);
+                    }
+                }
+            }
         }
     }
 }
