@@ -7,9 +7,9 @@ const NavBar = () => {
             <div className="nav-icon-container">
                 <ion-icon name="ios-cart"/>
             </div>
-            <Link>Home</Link>
-            <Link>Register</Link>
-            <Link>Login</Link>
+            <Link to="/">Home</Link>
+            <Link to="/register/customer">Register</Link>
+            <Link to="/">Login</Link>
         </nav>
     )
 }

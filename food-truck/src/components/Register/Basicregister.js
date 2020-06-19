@@ -1,7 +1,9 @@
 import React from 'react'
 import NavBar from '../NavBar/NavBar'
 
-const BasicRegister = () => {
+const BasicRegister = (props) => {
+    const inputs = props.inputs
+
     return (
         <div className="register-page">
             <NavBar/>
@@ -12,10 +14,9 @@ const BasicRegister = () => {
             <div className="register-form-container">
                 <h1>Create Account</h1>
                 <div className="register-form">
-                    <input placeholder="username"/>
-                    <input placeholder="password"/>
-                    <input placeholder="name"/>
-                    <input placeholder="address"/>
+                    {inputs.map(input => {
+                        return <input key={inputs.indexOf(input)} placeholder={input}/>
+                    })}
                     <a>Register</a>
                 </div>
             </div>
