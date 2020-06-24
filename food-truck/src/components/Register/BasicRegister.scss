@@ -45,7 +45,7 @@
             input {
                 background-color: transparent;
                 border: none;
-                font-size: 2.2rem;
+                font-size: 2rem;
                 margin: 7px 0;
                 color: #000;
                 background-color: #fff;
@@ -73,5 +73,15 @@
                 }
             }
         }
+    }
+
+    #invalid-form {
+        margin: 0 auto;
+        margin-top: 20px;
+        width: 30%;
+        text-align: center;
+        color: rgb(255, 0, 0);
+        font-size: 1.8rem;
+        font-weight: 300;
     }
 }
