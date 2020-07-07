@@ -34,6 +34,9 @@ const BasicRegister = (props) => {
     }
 
     const validateForm = () => {
+        if (userInfo.user_type === 'deliverer') {
+            userInfo.address = 'not specified'
+        }
         for(let input in userInfo){
             if (userInfo[input] === '') {
                 return false
