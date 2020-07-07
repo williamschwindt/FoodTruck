@@ -52,6 +52,28 @@ const BasicRegister = (props) => {
         }
     }
 
+    if(props.isFetching) {
+        return (
+            <div className="register-page">
+                <NavBar/>
+                <div className="register-logo">
+                    <ion-icon name="ios-cart" />
+                    <h1>Food Truck</h1>
+                </div>
+                <div className="register-form-container">
+                    <div style={{height: '94vh'}}>
+                        <div className="lds-ring">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="register-page">
             <NavBar/>
