@@ -7,8 +7,16 @@ const BasicRegister = (props) => {
     const inputs = props.inputs
 
     const [userInfo, setUserInfo] = useState({
-        user_type: props.type
+        user_type: props.type,
+        address: '',
+        username: '',
+        password: '',
+        name: ''
     })
+
+    if(props.error.response) {
+        console.log(props.error.response.data.message)
+    }
 
     const formatName = (name) => {
         if(name === 'store name') {
@@ -26,20 +34,17 @@ const BasicRegister = (props) => {
     }
 
     const validateForm = () => {
-        const formValues = document.querySelectorAll('input')
-        let validForm = true
-        for(let input in formValues){
-            if (input === '') {
-                validForm = false
-            }
+        for(let input in userInfo){
+            if (userInfo[input] === '') {
+                return false
+            } 
         }
-        return validForm
+        return true
     }
 
     const register = (e) => {
-        e.preventDefault()
-        console.log(validateForm())
-        if (validateForm() === false) {
+        const valid = validateForm()
+        if (valid === false) {
             document.querySelector('#invalid-form').innerHTML = 'Please fill out all feilds'
         }
         else {
@@ -63,7 +68,10 @@ const BasicRegister = (props) => {
                     <button onClick={register}>Register</button>
                 </div>
             </div>
-            <p id="invalid-form"></p>
+            {props.error.response ?
+                <p id="invalid-form">{props.error.response.data.message}</p> : 
+                <p id="invalid-form"></p>
+            }
         </div>
     )
 }
