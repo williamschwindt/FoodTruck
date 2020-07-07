@@ -5,7 +5,7 @@ import { REGISTER_ACCOUNT_START, REGISTER_ACCOUNT_SUCCESS, REGISTER_ACCOUNT_FAIL
 export const registerAccount = (body) => dispatch => {
     dispatch({ type: REGISTER_ACCOUNT_START })
 
-    axios.post('https://food-truck-prod.herokuapp.com/api/auth/register', body)
+    axios.post('https://food-truck-dev1.herokuapp.com/api/auth/register', body)
     .then(res => {
         dispatch({ type: REGISTER_ACCOUNT_SUCCESS, payload: res })
     })

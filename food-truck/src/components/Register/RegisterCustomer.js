@@ -4,7 +4,7 @@ import BasicRegister from './Basicregister'
 const RegisterCustomer = () => {
     return (
         <div>
-            <BasicRegister inputs={['username', 'password', 'name', 'address']} type='customer'/>
+            <BasicRegister inputs={['username', 'password']} type='customer'/>
         </div>
     )
 }

@@ -8,22 +8,10 @@ const BasicRegister = (props) => {
 
     const [userInfo, setUserInfo] = useState({
         user_type: props.type,
-        address: '',
-        username: '',
-        password: '',
-        name: ''
     })
 
     if(props.error.response) {
         console.log(props.error.response.data.message)
-    }
-
-    const formatName = (name) => {
-        if(name === 'store name') {
-            return name.replace('store name', 'name')
-        } else {
-            return name
-        }
     }
 
     const changeHandler = (e) => {
@@ -34,9 +22,6 @@ const BasicRegister = (props) => {
     }
 
     const validateForm = () => {
-        if (userInfo.user_type === 'deliverer') {
-            userInfo.address = 'not specified'
-        }
         for(let input in userInfo){
             if (userInfo[input] === '') {
                 return false
@@ -88,7 +73,7 @@ const BasicRegister = (props) => {
                 <h1>Create Account</h1>
                 <div className="register-form">
                     {inputs.map(input => {
-                        return <input key={inputs.indexOf(input)} name={formatName(input)} onChange={changeHandler}  placeholder={input}/>
+                        return <input key={inputs.indexOf(input)} name={input} onChange={changeHandler}  placeholder={input}/>
                     })}
                     <button onClick={register}>Register</button>
                 </div>

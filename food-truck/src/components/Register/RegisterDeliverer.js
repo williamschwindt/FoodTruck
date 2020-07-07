@@ -3,7 +3,7 @@ import BasicRegister from './Basicregister'
 
 const RegisterDeliverer = () => {
     return (
-        <BasicRegister inputs={['username', 'password', 'name']} type='deliverer'/>
+        <BasicRegister inputs={['username', 'password']} type='deliverer'/>
     )
 }
 
