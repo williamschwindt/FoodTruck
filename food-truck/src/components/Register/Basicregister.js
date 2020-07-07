@@ -10,10 +10,6 @@ const BasicRegister = (props) => {
         user_type: props.type,
     })
 
-    if(props.error.response) {
-        console.log(props.error.response.data.message)
-    }
-
     const changeHandler = (e) => {
         setUserInfo({
             ...userInfo,
@@ -36,7 +32,7 @@ const BasicRegister = (props) => {
             document.querySelector('#invalid-form').innerHTML = 'Please fill out all feilds'
         }
         else {
-            props.registerAccount(userInfo)
+            props.registerAccount(userInfo, props.props.history.push, `/${props.type}/home`)
         }
     }
 

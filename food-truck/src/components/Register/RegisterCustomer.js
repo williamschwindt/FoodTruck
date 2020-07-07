@@ -1,10 +1,10 @@
 import React from 'react'
 import BasicRegister from './Basicregister'
 
-const RegisterCustomer = () => {
+const RegisterCustomer = (props) => {
     return (
         <div>
-            <BasicRegister inputs={['username', 'password']} type='customer'/>
+            <BasicRegister props={props} inputs={['username', 'password']} type='customer'/>
         </div>
     )
 }

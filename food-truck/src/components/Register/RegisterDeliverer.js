@@ -1,9 +1,9 @@
 import React from 'react'
 import BasicRegister from './Basicregister'
 
-const RegisterDeliverer = () => {
+const RegisterDeliverer = (props) => {
     return (
-        <BasicRegister inputs={['username', 'password']} type='deliverer'/>
+        <BasicRegister props={props} inputs={['username', 'password']} type='deliverer'/>
     )
 }
 
