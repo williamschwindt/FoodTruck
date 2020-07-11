@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './components/Home'
 import { Route } from 'react-router-dom'
+import ProtectedRoute from './components/utils/ProtectedRoute'
 import RegisterCustomer from './components/Register/RegisterCustomer'
 import RegisterStore from './components/Register/RegisterStore'
 import RegisterDeliverer from './components/Register/RegisterDeliverer'
@@ -17,9 +18,9 @@ function App() {
       <Route exact path='/register/store' component={RegisterStore} />
       <Route exact path='/register/deliverer' component={RegisterDeliverer} />
 
-      <Route exact path='/store/home' component={StoreHome} />
-      <Route exact path='/customer/home' component={CustomerHome} />
-      <Route exact path='/deliverer/home' component={DelivererHome} />
+      <ProtectedRoute exact path='/store/home' component={StoreHome} />
+      <ProtectedRoute exact path='/customer/home' component={CustomerHome} />
+      <ProtectedRoute exact path='/deliverer/home' component={DelivererHome} />
     </div>
   );
 }
