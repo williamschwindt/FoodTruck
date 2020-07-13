@@ -2,7 +2,7 @@ import { AxiosWithAuth } from '../components/utils/AxiosWithAuth'
 
 import { ADD_STORE_START, ADD_STORE_FAILURE, ADD_STORE_SUCCESS } from './types'
 
-export const addStore = (userId, store) => dispatch => {
+export const addStore = (userId, store, fn) => dispatch => {
     dispatch({ type: ADD_STORE_START })
 
     return AxiosWithAuth()
@@ -10,6 +10,7 @@ export const addStore = (userId, store) => dispatch => {
     .then(res => {
         console.log(res)
         dispatch({ type: ADD_STORE_SUCCESS, payload: res })
+        fn(userId)
     })
     .catch(err => {
         console.log(err)
