@@ -52,7 +52,7 @@ const StoreHome = (props) => {
                             <input onChange={changeHandler} name='store_name' placeholder="Store Name"/>
                             <input onChange={changeHandler} name='store_address' placeholder="Address"/>
                             <input onChange={changeHandler} name='city' placeholder="City"/>
-                            <input onChange={changeHandler} name='state' maxLength="2" placeholder="state"/>
+                            <input onChange={changeHandler} name='state' maxLength="2" placeholder="Sttate"/>
                         </form>
                         <div className="modal-button-box">
                             <h2 onClick={closeModal} id="store-cancel">Cancel</h2>
