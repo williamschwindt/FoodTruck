@@ -61,8 +61,8 @@ const StoreHome = (props) => {
                     </div>
                 </div>
                 <h1 id='store-home-title'>Stores</h1>
+                <button onClick={showModal} id="store-add-btn">Add</button>
                 <div className='stores-container'>
-                    <button onClick={showModal} id="store-add-btn">Add</button>
                     <div className='stores'>
                         {props.stores.map(store => {
                             return <Store key={store.store_id} store={store}/>
