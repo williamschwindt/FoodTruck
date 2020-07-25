@@ -6,6 +6,76 @@
     border-radius: 5px;
     width: 300px;
 
+    .edit-store-modal {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 200vh;
+        background-color: rgba(0, 0, 0, 0.4);
+
+        .modal-info {
+            width: 40%;
+            margin: 0 auto;
+            margin-top: 20vh;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 5px;
+            overflow: hidden;
+
+            .edit-store-modal-title {
+                font-size: 3rem;
+                margin-bottom: 20px;
+                padding-bottom: 5px;
+                border-bottom: 1px solid rgb(25, 144, 255);
+            }
+
+            #edit-store-form {
+                display: flex;
+                flex-direction: column;
+
+                input {
+                    font-size: 2rem;
+                    outline: none;
+                    border: solid 1px #dfdfdf;
+                    margin-bottom: 15px;
+                }
+            }
+
+            .modal-button-box {
+                display: flex;
+                margin-top: 20px;
+
+                #store-cancel, #store-update{
+                    padding: 10px 0;
+                    font-size: 2rem;
+                    font-weight: 300;
+                    width: 50%;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+                #store-cancel {
+                    background-color: rgb(170, 170, 170);
+                    color: #fff;
+                    text-align: center;
+                }
+
+                #store-update {
+                    background-color: rgb(25, 144, 255);
+                    color: #fff;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
     .store-settings-icon {
         margin-right: -5px;
         margin-top: -5px;
