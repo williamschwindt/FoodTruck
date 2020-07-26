@@ -41,7 +41,7 @@ const Store = (props) => {
     }
 
     const deleteStoreBtn = () => {
-
+        props.deleteStore(props.store.store_id)
     }
 
     return(

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { addStore } from '../../../actions/addStore'
 import { getStores } from '../../../actions/getStores'
+import { deleteStore } from '../../../actions/deleteStore'
 import StoreNav from '../StoreNav/StoreNav'
 import Store from '../Store/Store'
 
@@ -40,6 +41,10 @@ const StoreHome = (props) => {
         closeModal()
         document.querySelector('#add-store-form').reset()
     }
+
+    const deleteStoreStateRefresh = (id) => {
+        props.deleteStore(id, props.getStores, userId)
+    }
     
     return (
         <div>
@@ -65,7 +70,7 @@ const StoreHome = (props) => {
                 <div className='stores-container'>
                     <div className='stores'>
                         {props.stores.map(store => {
-                            return <Store key={store.store_id} store={store}/>
+                            return <Store key={store.store_id} store={store} deleteStore={deleteStoreStateRefresh}/>
                         })}
                     </div>
                 </div>
@@ -77,7 +82,8 @@ const StoreHome = (props) => {
 const mapStateToProps = state => {
     return {
         stores: state.storesReducer.stores,
+        store: state.storeReducer.store
     }
 }
 
-export default connect(mapStateToProps, {addStore, getStores})(StoreHome)
+export default connect(mapStateToProps, {addStore, getStores, deleteStore})(StoreHome)
