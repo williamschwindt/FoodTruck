@@ -91,8 +91,8 @@ const StoreHome = (props) => {
                 
                 <h1 id='store-home-title'>Stores</h1>
                 <button onClick={showModal} id="store-add-btn">Add</button>
-                {props.error ?
-                    <p id="store-props-error">{props.error.response.data.message}</p>
+                {props.storeError ?
+                    <p id="store-props-error">{props.storeError.response.data.message}</p>
                     :
                     <p id="store-props-error"></p>
                 }
@@ -111,7 +111,7 @@ const StoreHome = (props) => {
 const mapStateToProps = state => {
     return {
         stores: state.storesReducer.stores,
-        error: state.storesReducer.error,
+        storeError: state.storesReducer.error,
         store: state.storeReducer.store
     }
 }
