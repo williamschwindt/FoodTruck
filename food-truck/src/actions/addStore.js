@@ -13,7 +13,6 @@ export const addStore = (userId, store, fn) => dispatch => {
         fn(userId)
     })
     .catch(err => {
-        console.log(err)
         dispatch({ type: ADD_STORE_FAILURE, payload: err })
     })
 }

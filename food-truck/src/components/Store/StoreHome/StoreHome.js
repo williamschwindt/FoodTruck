@@ -8,8 +8,16 @@ import Store from '../Store/Store'
 
 const StoreHome = (props) => {
     const userId = localStorage.getItem('userId')
+    if(props.error) {
+        console.log(props.error.response)
+    }
 
-   const [storeValues, setStoreValues] = useState({})
+   const [storeValues, setStoreValues] = useState({
+        store_name: '',
+        store_address: '',
+        state: '',
+        city: ''
+   })
 
    const changeHandler = (e) => {
         setStoreValues({
@@ -32,14 +40,28 @@ const StoreHome = (props) => {
         modal.style.display = 'none'
     }
 
+    const validateForm = () => {
+        for(let input in storeValues){
+            if (storeValues[input] === '') {
+                return false
+            } 
+        }
+        return true
+    }
+
     const addUserStore = () => {
-        props.addStore(userId, {
-            store_name: storeValues.store_name,
-            store_address: storeValues.store_address,
-            city_state: `${storeValues.city}, ${storeValues.state}`
-        }, props.getStores)
-        closeModal()
-        document.querySelector('#add-store-form').reset()
+        if(validateForm()) {
+            document.getElementById('store-props-error').innerHTML = ''
+            props.addStore(userId, {
+                store_name: storeValues.store_name,
+                store_address: storeValues.store_address,
+                city_state: `${storeValues.city}, ${storeValues.state}`
+            }, props.getStores)
+            closeModal()
+            document.querySelector('#add-store-form').reset()
+        } else {
+            document.getElementById('add-store-error').innerHTML = 'Please fill out all feilds'
+        }
     }
 
     const deleteStoreStateRefresh = (id) => {
@@ -63,10 +85,17 @@ const StoreHome = (props) => {
                             <h2 onClick={closeModal} id="store-cancel">Cancel</h2>
                             <h2 onClick={addUserStore} id="store-add">Create Store</h2>
                         </div>
+                        <p id="add-store-error"></p>
                     </div>
                 </div>
+                
                 <h1 id='store-home-title'>Stores</h1>
                 <button onClick={showModal} id="store-add-btn">Add</button>
+                {props.error ?
+                    <p id="store-props-error">{props.error.response.data.message}</p>
+                    :
+                    <p id="store-props-error"></p>
+                }
                 <div className='stores-container'>
                     <div className='stores'>
                         {props.stores.map(store => {
@@ -82,6 +111,7 @@ const StoreHome = (props) => {
 const mapStateToProps = state => {
     return {
         stores: state.storesReducer.stores,
+        error: state.storesReducer.error,
         store: state.storeReducer.store
     }
 }
