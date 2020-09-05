@@ -7,6 +7,7 @@ import RegisterStore from './components/Register/RegisterStore'
 import RegisterDeliverer from './components/Register/RegisterDeliverer'
 import Login from './components/Login/Login'
 import StoreHome from './components/Store/StoreHome/StoreHome'
+import StoreHomePage from './components/Store/StoreHomePage/StoreHomePage'
 import CustomerHome from './components/Customer/CustomerHome/CustomerHome'
 import DelivererHome from './components/Deliverer/DelivererHome/DelivererHome'
 
@@ -24,6 +25,8 @@ function App() {
       <ProtectedRoute exact path='/store/home' component={StoreHome} />
       <ProtectedRoute exact path='/customer/home' component={CustomerHome} />
       <ProtectedRoute exact path='/deliverer/home' component={DelivererHome} />
+
+      <ProtectedRoute exact path='/store/store/:id' component={StoreHomePage} />
     </div>
   );
 }
