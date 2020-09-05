@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 const StoreNav = () => {
     return (
         <nav>
-            <div className="nav-icon-container">
+            <Link to="/" className="nav-icon-container">
                 <ion-icon name="ios-cart"/>
-            </div>
-            <Link to="/store/home">Home</Link>
-            <Link to="/">Orders</Link>
-            <Link to="/">Logout</Link>
+            </Link>
+            <Link className="store-nav-link" to="/store/home">Home</Link>
+            <Link className="store-nav-link" to="/">Orders</Link>
+            <Link className="store-nav-link" to="/">Logout</Link>
         </nav>
     )
 }

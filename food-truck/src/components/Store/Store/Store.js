@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { editStore } from '../../../actions/editStore'
+import { Link } from 'react-router-dom'
 
 const Store = (props) => {
     const [settings, setSettings] = useState(false)
@@ -69,7 +70,7 @@ const Store = (props) => {
                         </div>
                         <h1>{store.store_name}</h1>
                         <h2>{store.store_address}</h2>
-                        <h2>View Store</h2>
+                        <Link to={`store/${props.store.store_id}`}>View Store</Link>
                     </div>
                 </div>
             :
@@ -80,6 +81,7 @@ const Store = (props) => {
                                 <ion-icon name="ios-close" />
                             </div>
                             <h1>{store.store_name}</h1>
+                            <h2>{store.store_address}</h2>
                             <div className="store-buttons">
                                 <h2 onClick={editStoreBtn} id="store-edit">Edit</h2>
                                 <h2 onClick={deleteStoreBtn} id="store-remove">Remove</h2>
@@ -92,7 +94,7 @@ const Store = (props) => {
                             </div>
                             <h1>{store.store_name}</h1>
                             <h2>{store.store_address}</h2>
-                            <h2>View Store</h2>
+                            <Link to={`store/${props.store.store_id}`}>View Store</Link>
                         </div>
                     }
                 </div>
