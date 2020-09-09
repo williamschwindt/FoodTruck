@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getStore } from '../../../actions/getStore'
 import { addItem } from '../../../actions/addItem'
+import { getItems } from '../../../actions/getItems'
 import StoreNav from '../StoreNav/StoreNav'
 
 const StoreHomePage = (props) => {
     console.log(props)
+    console.log(props.items)
     const userId = localStorage.getItem('userId')
 
     useEffect(() => {
         props.getStore(userId, props.match.params.id)
+        props.getItems(props.match.params.id)
     }, [])
 
     if(props.error) {
@@ -52,7 +55,7 @@ const StoreHomePage = (props) => {
            props.addItem(props.store.store_id, {
                name: itemValues.item_name,
                price: itemValues.item_price,
-           })
+           }, props.getItems)
            closeModal()
            document.querySelector('#add-item-form').reset()
        } else {
@@ -92,10 +95,10 @@ const StoreHomePage = (props) => {
 const mapStateToProps = state => {
     return {
         store: state.storeReducer.store,
-        error: state.storeReducer.error
+        error: state.storeReducer.error,
 
-        //item state
+        items: state.itemsReducer.items
     }
 }
 
-export default connect(mapStateToProps, {getStore, addItem})(StoreHomePage)
+export default connect(mapStateToProps, {getStore, getItems, addItem})(StoreHomePage)
