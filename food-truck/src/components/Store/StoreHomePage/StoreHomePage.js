@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getStore } from '../../../actions/getStore'
+import { addItem } from '../../../actions/addItem'
 import StoreNav from '../StoreNav/StoreNav'
 
-const StoreHomePage = (props, {getStore}) => {
+const StoreHomePage = (props) => {
     console.log(props)
     const userId = localStorage.getItem('userId')
 
@@ -17,9 +18,7 @@ const StoreHomePage = (props, {getStore}) => {
 
    const [itemValues, setItemValues] = useState({
         item_name: '',
-        item_address: '',
-        state: '',
-        city: ''
+        item_price: '',
    })
 
    const changeHandler = (e) => {
@@ -49,12 +48,11 @@ const StoreHomePage = (props, {getStore}) => {
 
    const addStoreItem = () => {
        if(validateForm()) {
-           document.getElementById('store-props-error').innerHTML = ''
-           props.addItem(userId, {
-               store_name: itemValues.item_name,
-               item_address: itemValues.item_address,
-               city_state: `${itemValues.city}, ${itemValues.state}`
-           }, props.getStores)
+           document.getElementById('add-item-error').innerHTML = ''
+           props.addItem(props.store.store_id, {
+               name: itemValues.item_name,
+               price: itemValues.item_price,
+           })
            closeModal()
            document.querySelector('#add-item-form').reset()
        } else {
@@ -73,10 +71,8 @@ const StoreHomePage = (props, {getStore}) => {
                 <div className="modal-info">
                     <h1 className="add-item-modal-title">Add Item</h1>
                     <form id="add-item-form">
-                        <input onChange={changeHandler} name='store_name' placeholder="Store Name"/>
-                        <input onChange={changeHandler} name='store_address' placeholder="Address"/>
-                        <input onChange={changeHandler} name='city' placeholder="City"/>
-                        <input onChange={changeHandler} name='state' maxLength="2" placeholder="Sttate"/>
+                        <input onChange={changeHandler} name='item_name' placeholder="Item Name"/>
+                        <input onChange={changeHandler} name='item_price' placeholder="Price"/>
                     </form>
                     <div className="modal-button-box">
                         <h2 onClick={closeModal} id="item-cancel">Cancel</h2>
@@ -97,7 +93,9 @@ const mapStateToProps = state => {
     return {
         store: state.storeReducer.store,
         error: state.storeReducer.error
+
+        //item state
     }
 }
 
-export default connect(mapStateToProps, {getStore})(StoreHomePage)
+export default connect(mapStateToProps, {getStore, addItem})(StoreHomePage)
