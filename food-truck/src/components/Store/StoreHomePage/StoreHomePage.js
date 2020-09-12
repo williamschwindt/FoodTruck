@@ -20,6 +20,20 @@ const StoreHomePage = (props) => {
         item.item_price = newPrice
     })
 
+    //sort items alphabetically 
+    props.items.sort((a,b) => {
+        let itemA = a.item_name.toUpperCase()
+        let itemB = b.item_name.toUpperCase()
+
+        if (itemA < itemB){
+            return -1
+        }
+        else if (itemA > itemB) {
+            return 1
+        }
+        return 0
+    })
+
     useEffect(() => {
         props.getStore(userId, props.match.params.id)
         props.getItems(props.match.params.id)
