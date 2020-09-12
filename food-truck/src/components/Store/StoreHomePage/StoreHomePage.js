@@ -4,11 +4,21 @@ import { getStore } from '../../../actions/getStore'
 import { addItem } from '../../../actions/addItem'
 import { getItems } from '../../../actions/getItems'
 import StoreNav from '../StoreNav/StoreNav'
+import StoreItem from '../StoreItems/StoreItem'
 
 const StoreHomePage = (props) => {
     console.log(props)
     console.log(props.items)
     const userId = localStorage.getItem('userId')
+
+    //add . to item prices to indicate cents
+    props.items.map(item => {
+        let price = item.item_price
+        let priceString = price.toString()
+        let newPrice = priceString.slice(0, -2) +  '.' + priceString.slice(-2)
+
+        item.item_price = newPrice
+    })
 
     useEffect(() => {
         props.getStore(userId, props.match.params.id)
@@ -87,6 +97,11 @@ const StoreHomePage = (props) => {
             <div className="store-home-page-container">
                 <h1 id='store-home-page-title'>{props.store.store_name}</h1>
                 <button onClick={showModal} id="item-add-btn">Add Item</button>
+                <div className='items'>
+                    {props.items.map(item => {
+                        return <StoreItem key={item.item_id} item={item} deleteStore={deleteItemStateRefresh}/>
+                    })}
+                </div>
             </div>
         </div>
     )
