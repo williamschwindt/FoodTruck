@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { editStore } from '../../../actions/editStore'
+import { editItem } from '../../../actions/editItem'
 import { Link } from 'react-router-dom'
 
 const StoreItem = (props) => {
@@ -10,6 +10,14 @@ const StoreItem = (props) => {
         item_name: props.item.item_name,
         item_price: props.item.item_price,
     })
+
+    //add . to item prices to indicate cents
+    const priceConverter = (price) => {
+            let priceString = price.toString()
+            let newPrice = priceString.slice(0, -2) +  '.' + priceString.slice(-2)
+    
+            return newPrice
+    }
 
     const toggleSettings = () => {
         setSettings(!settings)
@@ -32,11 +40,12 @@ const StoreItem = (props) => {
 
     const updateItem = () => {
         props.editItem(props.item.item_id, {
-            item_name: item.name,
-            item_price: item.item_price,
+            name: item.item_name,
+            price: item.item_price,
         })
         closeModal()
         document.querySelector('#edit-item-form').reset()
+        setSettings(false)
     }
 
     const deleteItemBtn = () => {
@@ -65,7 +74,7 @@ const StoreItem = (props) => {
                             <ion-icon name="ios-settings" />
                         </div>
                         <h1>{item.item_name}</h1>
-                        <h2>{props.price}</h2>
+                        <h2>${priceConverter(item.item_price)}</h2>
                     </div>
                 </div>
             :
@@ -87,7 +96,7 @@ const StoreItem = (props) => {
                                 <ion-icon name="ios-settings" />
                             </div>
                             <h1>{item.item_name}</h1>
-                            <h2>${item.item_price}</h2>
+                            <h2>${priceConverter(item.item_price)}</h2>
                         </div>
                     }
                 </div>
@@ -98,10 +107,10 @@ const StoreItem = (props) => {
 
 const mapStateToProps = state => {
     return {
-        // updateditem: state.itemReducer.item,
-        // isFetching: state.itemReducer.isFetching,
-        // error: state.itemReducer.error
+        updateditem: state.itemReducer.item,
+        isFetching: state.itemReducer.isFetching,
+        error: state.itemReducer.error
     }
 }
 
-export default connect(mapStateToProps)(StoreItem)
+export default connect(mapStateToProps, {editItem})(StoreItem)

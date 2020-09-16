@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getStore } from '../../../actions/getStore'
 import { addItem } from '../../../actions/addItem'
 import { getItems } from '../../../actions/getItems'
+import { deleteItem } from '../../../actions/deleteItem'
 import StoreNav from '../StoreNav/StoreNav'
 import StoreItem from '../StoreItems/StoreItem'
 
@@ -10,15 +11,6 @@ const StoreHomePage = (props) => {
     console.log(props)
     console.log(props.items)
     const userId = localStorage.getItem('userId')
-
-    //add . to item prices to indicate cents
-    props.items.map(item => {
-        let price = item.item_price
-        let priceString = price.toString()
-        let newPrice = priceString.slice(0, -2) +  '.' + priceString.slice(-2)
-
-        item.item_price = newPrice
-    })
 
     //sort items alphabetically 
     props.items.sort((a,b) => {
@@ -88,7 +80,7 @@ const StoreHomePage = (props) => {
    }
 
    const deleteItemStateRefresh = (id) => {
-       props.deleteStore(id, props.getStores, userId)
+       props.deleteItem(id, props.getItems, props.match.params.id)
    }
 
     return (
@@ -113,7 +105,7 @@ const StoreHomePage = (props) => {
                 <button onClick={showModal} id="item-add-btn">Add Item</button>
                 <div className='items'>
                     {props.items.map(item => {
-                        return <StoreItem key={item.item_id} item={item} deleteStore={deleteItemStateRefresh}/>
+                        return <StoreItem key={item.item_id} item={item} deleteItem={deleteItemStateRefresh}/>
                     })}
                 </div>
             </div>
@@ -130,4 +122,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {getStore, getItems, addItem})(StoreHomePage)
+export default connect(mapStateToProps, {getStore, getItems, addItem, deleteItem})(StoreHomePage)
